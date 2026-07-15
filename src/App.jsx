@@ -26,13 +26,6 @@ import { faqs } from './data/faqs';
 import { socialLinks } from './data/socialLinks';
 import heroBanner from './assets/hero-banner.png';
 import aboutPortrait from './assets/about-portrait.png';
-import defaultCover from './assets/default-cover.svg';
-import previewVideoOne from './assets/videos/55544.mp4';
-import previewVideoTwo from './assets/videos/55555.mp4';
-import previewVideoThree from './assets/videos/kp.mp4';
-import previewVideoFour from './assets/videos/tr.mp4';
-import previewVideoFive from './assets/videos/v221.mp4';
-import previewVideoSix from './assets/videos/vcv-ok.mp4';
 
 const previewVideos = [
   {
@@ -40,42 +33,63 @@ const previewVideos = [
     title: 'Wedding Reel Preview',
     label: 'Instagram Reels',
     platform: 'Instagram',
-    video: previewVideoOne,
+    remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
   },
   {
     href: socialLinks.youtube.url,
     title: 'Music Edit Preview',
     label: 'YouTube Shorts',
     platform: 'YouTube',
-    video: previewVideoTwo,
+    remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
   },
   {
     href: socialLinks.instagram.url,
     title: 'Brand Story Preview',
     label: 'Instagram Reels',
     platform: 'Instagram',
-    video: previewVideoThree,
+    remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
   },
   {
     href: socialLinks.youtube.url,
     title: 'Event Highlight Preview',
     label: 'YouTube',
     platform: 'YouTube',
-    video: previewVideoFour,
+    remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
   },
   {
     href: socialLinks.instagram.url,
-    title: 'Editorial Cut Preview',
+    title: 'Emotional Cut Preview',
     label: 'Instagram Reels',
     platform: 'Instagram',
-    video: previewVideoFive,
+    remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+  },
+  {
+    href: socialLinks.youtube.url,
+    title: 'Festival Highlight Preview',
+    label: 'YouTube',
+    platform: 'YouTube',
+    remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+  },
+  {
+    href: socialLinks.instagram.url,
+    title: 'City Story Preview',
+    label: 'Instagram Reels',
+    platform: 'Instagram',
+    remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
   },
   {
     href: socialLinks.youtube.url,
     title: 'Cinematic Cut Preview',
     label: 'YouTube',
     platform: 'YouTube',
-    video: previewVideoSix,
+    remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+  },
+  {
+    href: socialLinks.youtube.url,
+    title: 'Signature Edit Preview',
+    label: 'YouTube',
+    platform: 'YouTube',
+    remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
   },
 ];
 
@@ -134,6 +148,7 @@ const whatsappLink = 'https://wa.me/919626950823?text=Hello%20Suraya%2C%20I%20wo
 
 function PreviewTile({ tile }) {
   const vidRef = useRef(null);
+  const [videoError, setVideoError] = useState(false);
   const videoSrc = tile.video || tile.remoteVideo;
   const isVideo = Boolean(videoSrc);
 
@@ -163,6 +178,24 @@ function PreviewTile({ tile }) {
     }
   };
 
+  const handleCanPlay = () => {
+    const v = vidRef.current;
+    if (!v) return;
+    try {
+      v.muted = true;
+      v.playsInline = true;
+      const p = v.play();
+      if (p && p.catch) p.catch(() => {});
+    } catch (e) {
+      console.warn('Video play on canplay failed:', e);
+    }
+  };
+
+  const handleVideoError = (e) => {
+    console.error('Preview video error:', e);
+    setVideoError(true);
+  };
+
   return (
     <a
       href={tile.href}
@@ -180,7 +213,7 @@ function PreviewTile({ tile }) {
         onFocus={isVideo ? handleStart : undefined}
         onBlur={isVideo ? handleLeave : undefined}
       >
-        {isVideo ? (
+        {isVideo && !videoError ? (
           <video
             ref={vidRef}
             src={videoSrc}
@@ -190,11 +223,13 @@ function PreviewTile({ tile }) {
             playsInline
             autoPlay
             preload="auto"
+            onCanPlay={handleCanPlay}
+            onError={handleVideoError}
           />
         ) : (
-          <img src={defaultCover} alt={tile.title} className="h-72 w-full object-cover" />
+          <div className="h-72 w-full bg-zinc-900" />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+        {/* gradient overlay removed per request */}
         <div className="absolute left-4 top-4 rounded-full border border-white/10 bg-black/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.32em] text-stone-100 backdrop-blur-sm">
           {tile.platform}
         </div>
