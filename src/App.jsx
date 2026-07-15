@@ -18,7 +18,6 @@ import {
   Mic,
 } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
-import { portfolioCategories, featuredWork } from './data/portfolio';
 import { clientLogos } from './data/clients';
 import { testimonials } from './data/testimonials';
 import { stats, experience } from './data/achievements';
@@ -219,7 +218,6 @@ function App() {
             <div className="hidden gap-6 text-sm text-stone-300 md:flex">
               <a href="#about" className="transition hover:text-accent">About</a>
               <a href="#services" className="transition hover:text-accent">Services</a>
-              <a href="#portfolio" className="transition hover:text-accent">Portfolio</a>
               <a href={socialLinks.instagram.url} target="_blank" rel="noopener noreferrer" className="transition hover:text-accent">Instagram</a>
               <a href={socialLinks.youtube.url} target="_blank" rel="noopener noreferrer" className="transition hover:text-accent">YouTube</a>
               <a href="#contact" className="transition hover:text-accent">Contact</a>
