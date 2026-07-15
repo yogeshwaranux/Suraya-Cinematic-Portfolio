@@ -11,8 +11,13 @@ import {
   Play,
   Star,
   Youtube,
+  Film,
+  Image,
+  Edit3,
+  Smartphone,
+  Mic,
 } from 'lucide-react';
-import { services } from './data/services';
+import { useRef, useState, useEffect } from 'react';
 import { portfolioCategories, featuredWork } from './data/portfolio';
 import { clientLogos } from './data/clients';
 import { testimonials } from './data/testimonials';
@@ -23,14 +28,56 @@ import { socialLinks } from './data/socialLinks';
 import heroBanner from './assets/hero-banner.png';
 import aboutPortrait from './assets/about-portrait.png';
 import defaultCover from './assets/default-cover.svg';
+import previewVideoOne from './assets/videos/55544.mp4';
+import previewVideoTwo from './assets/videos/55555.mp4';
+import previewVideoThree from './assets/videos/kp.mp4';
+import previewVideoFour from './assets/videos/tr.mp4';
+import previewVideoFive from './assets/videos/v221.mp4';
+import previewVideoSix from './assets/videos/vcv-ok.mp4';
 
 const previewVideos = [
-  { href: socialLinks.instagram.url, title: 'Wedding Reel Preview', label: 'Instagram Reels', platform: 'Instagram' },
-  { href: socialLinks.youtube.url, title: 'Music Edit Preview', label: 'YouTube Shorts', platform: 'YouTube' },
-  { href: socialLinks.instagram.url, title: 'Brand Story Preview', label: 'Instagram Reels', platform: 'Instagram' },
-  { href: socialLinks.youtube.url, title: 'Event Highlight Preview', label: 'YouTube', platform: 'YouTube' },
-  { href: socialLinks.instagram.url, title: 'Editorial Cut Preview', label: 'Instagram Reels', platform: 'Instagram' },
-  { href: socialLinks.youtube.url, title: 'Cinematic Cut Preview', label: 'YouTube', platform: 'YouTube' },
+  {
+    href: socialLinks.instagram.url,
+    title: 'Wedding Reel Preview',
+    label: 'Instagram Reels',
+    platform: 'Instagram',
+    video: previewVideoOne,
+  },
+  {
+    href: socialLinks.youtube.url,
+    title: 'Music Edit Preview',
+    label: 'YouTube Shorts',
+    platform: 'YouTube',
+    video: previewVideoTwo,
+  },
+  {
+    href: socialLinks.instagram.url,
+    title: 'Brand Story Preview',
+    label: 'Instagram Reels',
+    platform: 'Instagram',
+    video: previewVideoThree,
+  },
+  {
+    href: socialLinks.youtube.url,
+    title: 'Event Highlight Preview',
+    label: 'YouTube',
+    platform: 'YouTube',
+    video: previewVideoFour,
+  },
+  {
+    href: socialLinks.instagram.url,
+    title: 'Editorial Cut Preview',
+    label: 'Instagram Reels',
+    platform: 'Instagram',
+    video: previewVideoFive,
+  },
+  {
+    href: socialLinks.youtube.url,
+    title: 'Cinematic Cut Preview',
+    label: 'YouTube',
+    platform: 'YouTube',
+    video: previewVideoSix,
+  },
 ];
 
 const showreelVideos = [
@@ -82,9 +129,84 @@ const youtubeShorts = [
 ];
 
 const youtubeEmbedUrl = 'https://www.youtube.com/embed?listType=user_uploads&list=skkuttystory9251';
-const locationLink = 'https://www.google.com/maps/search/?api=1&query=Tamil+Nadu%2C+India';
+const locationLink = 'https://www.google.com/maps/search/?api=1&query=Kerala%2C+India';
 const emailLink = 'mailto:suryak10052003@gmail.com';
 const whatsappLink = 'https://wa.me/919626950823?text=Hello%20Suraya%2C%20I%20would%20like%20to%20inquire%20about%20a%20project.';
+
+function PreviewTile({ tile }) {
+  const vidRef = useRef(null);
+  const videoSrc = tile.video || tile.remoteVideo;
+  const isVideo = Boolean(videoSrc);
+
+  const handleStart = async () => {
+    const v = vidRef.current;
+    if (!v) return;
+    try {
+      v.muted = true;
+      v.playsInline = true;
+      const p = v.play();
+      if (p && p.catch) p.catch((err) => {
+        console.warn('Video autoplay blocked:', err);
+      });
+    } catch (e) {
+      console.warn('Video play error:', e);
+    }
+  };
+
+  const handleLeave = () => {
+    const v = vidRef.current;
+    if (!v) return;
+    try {
+      v.pause();
+      v.currentTime = 0;
+    } catch (e) {
+      console.warn('Video pause/reset error:', e);
+    }
+  };
+
+  return (
+    <a
+      href={tile.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group w-full overflow-hidden rounded-[24px] border border-white/10 bg-zinc-900/70 transition duration-300 hover:-translate-y-1 hover:border-accent/40"
+    >
+      <div
+        className="relative overflow-hidden bg-black"
+        onMouseEnter={isVideo ? handleStart : undefined}
+        onPointerEnter={isVideo ? handleStart : undefined}
+        onTouchStart={isVideo ? handleStart : undefined}
+        onMouseLeave={isVideo ? handleLeave : undefined}
+        onPointerLeave={isVideo ? handleLeave : undefined}
+        onFocus={isVideo ? handleStart : undefined}
+        onBlur={isVideo ? handleLeave : undefined}
+      >
+        {isVideo ? (
+          <video
+            ref={vidRef}
+            src={videoSrc}
+            className="h-72 w-full object-cover"
+            muted
+            loop
+            playsInline
+            autoPlay
+            preload="auto"
+          />
+        ) : (
+          <img src={defaultCover} alt={tile.title} className="h-72 w-full object-cover" />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+        <div className="absolute left-4 top-4 rounded-full border border-white/10 bg-black/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.32em] text-stone-100 backdrop-blur-sm">
+          {tile.platform}
+        </div>
+        <div className="absolute inset-x-4 bottom-4 rounded-[24px] border border-white/10 bg-black/60 p-4 backdrop-blur-sm">
+          <p className="text-[10px] uppercase tracking-[0.32em] text-stone-400">{tile.label}</p>
+          <h3 className="mt-2 text-sm font-semibold text-stone-100 leading-5">{tile.title}</h3>
+        </div>
+      </div>
+    </a>
+  );
+}
 
 function App() {
   return (
@@ -168,6 +290,19 @@ function App() {
                 <p className="mb-3 text-sm uppercase tracking-[0.24em] text-accent">Creative philosophy</p>
                 <p className="text-stone-300">Every frame is crafted to feel authentic, emotionally resonant, and visually elevated.</p>
               </div>
+              
+              {/* Services moved to its own full-width section */}
+            </div>
+          </div>
+        </section>
+
+        <section id="services" className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+          <div className="rounded-[32px] border bg-white/5 p-10 shadow-[0_18px_60px_rgba(0,0,0,0.22)] backdrop-blur" style={{ borderColor: 'rgba(255,255,255,0.09)' }}>
+            <p className="mb-4 text-sm uppercase tracking-[0.3em] text-accent">Our Services</p>
+            <h2 className="font-display text-3xl sm:text-4xl">Professional visual storytelling services designed to help brands, businesses, creators, and individuals stand out through high-quality photography, cinematic videos, and engaging digital content.</h2>
+
+            <div className="mt-6">
+              <ServicesPremium />
             </div>
           </div>
         </section>
@@ -297,25 +432,7 @@ function App() {
             </div>
             <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {previewVideos.map((tile, index) => (
-                <a
-                  key={`${tile.platform}-${index}`}
-                  href={tile.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group w-full overflow-hidden rounded-[24px] border border-white/10 bg-zinc-900/70 transition duration-300 hover:-translate-y-1 hover:border-accent/40"
-                >
-                  <div className="relative overflow-hidden bg-black">
-                    <img src={defaultCover} alt={tile.title} className="h-72 w-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-                    <div className="absolute left-4 top-4 rounded-full border border-white/10 bg-black/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.32em] text-stone-100 backdrop-blur-sm">
-                      {tile.platform}
-                    </div>
-                    <div className="absolute inset-x-4 bottom-4 rounded-[24px] border border-white/10 bg-black/60 p-4 backdrop-blur-sm">
-                      <p className="text-[10px] uppercase tracking-[0.32em] text-stone-400">{tile.label}</p>
-                      <h3 className="mt-2 text-sm font-semibold text-stone-100 leading-5">{tile.title}</h3>
-                    </div>
-                  </div>
-                </a>
+                <PreviewTile key={`${tile.platform}-${index}`} tile={tile} />
               ))}
             </div>
           </div>
@@ -511,11 +628,120 @@ function App() {
             </div>
             <div className="pl-8">
               <p className="mb-2 text-sm font-semibold uppercase tracking-[0.24em] text-accent">Location</p>
-              <a href={locationLink} target="_blank" rel="noopener noreferrer" className="block text-sm text-stone-300 transition hover:text-accent">Kerala, India</a>
+              <a href={locationLink} target="_blank" rel="noopener noreferrer" className="block text-sm text-stone-300 transition hover:text-accent">Tamil Nadu, India</a>
             </div>
           </div>
         </div>
       </footer>
+    </div>
+  );
+}
+
+function ServicesPremium() {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setInView(true);
+            obs.disconnect();
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  const items = [
+    {
+      title: 'Video Production',
+      icon: Film,
+      bullets: ['Commercial Videos', 'Brand Films', 'Promotional Videos', 'Product Videos'],
+    },
+    {
+      title: 'Photography',
+      icon: Image,
+      bullets: ['Wedding Photography', 'Portrait Photography', 'Event Photography', 'Product Photography'],
+    },
+    {
+      title: 'Video Editing',
+      icon: Edit3,
+      bullets: ['YouTube Videos', 'Instagram Reels', 'YouTube Shorts', 'Cinematic Editing'],
+    },
+    {
+      title: 'Social Media Content',
+      icon: Smartphone,
+      bullets: ['Instagram Reels', 'Content Strategy', 'Content Planning', 'Audience Growth'],
+    },
+    {
+      title: 'Voice Over',
+      icon: Mic,
+      bullets: ['Tamil Voice Over', 'Commercial Voice', 'Story Narration', 'Brand Promotions'],
+    },
+  ];
+
+  return (
+    <div ref={ref} className="mt-6">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {items.map((it, idx) => {
+          const Icon = it.icon;
+          return (
+            <article
+              key={it.title}
+              className={`group relative overflow-hidden rounded-2xl border bg-zinc-900/60 p-6 backdrop-blur transition-transform duration-500 ease-out transform ${
+                inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
+              style={{ transitionDelay: `${idx * 120}ms`, borderColor: 'rgba(255,255,255,0.09)' }}
+              aria-labelledby={`service-${idx}`}
+            >
+              <div className="absolute -inset-0.5 rounded-2xl opacity-0 transition-all duration-500 group-hover:opacity-100 group-hover:blur-sm" style={{ boxShadow: '0 0 40px rgba(212,175,55,0.08)' }} />
+              <div className="relative z-10 flex h-full flex-col justify-between">
+                <div>
+                  <div className="mb-4 flex items-center gap-4">
+                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-black/40 text-accent backdrop-blur-sm">
+                      <Icon size={22} />
+                    </span>
+                    <h4 id={`service-${idx}`} className="text-lg font-semibold text-stone-100">
+                      {it.title}
+                    </h4>
+                  </div>
+
+                  <ul className="mt-2 space-y-2 text-sm text-stone-300">
+                    {it.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-3">
+                        <span className="mt-1 text-accent">•</span>
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mt-6">
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-zinc-950 shadow-sm transition-transform duration-300 hover:-translate-y-2"
+                  >
+                    Enquire <ChevronRight size={14} />
+                  </a>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <div className="mt-8 flex justify-center">
+        <a href="#contact" className="inline-flex items-center gap-3 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-zinc-950 shadow-lg transition duration-300 hover:-translate-y-1">
+          Let's Create Something Amazing <ArrowRight size={16} />
+        </a>
+      </div>
     </div>
   );
 }
