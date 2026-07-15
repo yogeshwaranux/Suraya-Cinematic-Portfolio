@@ -26,14 +26,14 @@ import { faqs } from './data/faqs';
 import { socialLinks } from './data/socialLinks';
 import heroBanner from './assets/hero-banner.png';
 import aboutPortrait from './assets/about-portrait.png';
-
-const previewVideos = [
   {
-    href: socialLinks.instagram.url,
-    title: 'Instagram Reel Preview',
-    label: 'Instagram Reels',
-    platform: 'Instagram',
+    href: socialLinks.youtube.url,
+    title: 'Music Edit Preview',
+    label: 'YouTube Shorts',
+    platform: 'YouTube',
     remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+  },
+  {remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
   },
   {
     href: socialLinks.youtube.url,
@@ -89,16 +89,7 @@ const previewVideos = [
     title: 'Card promotion Edit Preview',
     label: 'YouTube',
     platform: 'YouTube',
-    remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
-  },
-];
-
-const showreelVideos = [
-  {
-    id: '_mxAIpa2eA0',
-    url: 'https://youtu.be/_mxAIpa2eA0?si=1HUSua_bZn91A5gP',
-    alt: 'Music edit',
-    platform: 'YouTube',
+    remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4'
   },
   {
     id: 'auUcjEVV9qE',
