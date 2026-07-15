@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surya K | Cinematic Videographer & Editor</title>
+  <meta name="description" content="Luxury cinematic videography and editing for music videos, wedding films, and premium brand content." />
+  <meta name="theme-color" content="#0F0F0F" />
+  <meta property="og:title" content="Surya K | Cinematic Videographer & Editor" />
+  <meta property="og:description" content="Premium visual storytelling for artists, weddings, and businesses." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.cdnfonts.com/css/clash-display" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --bg-soft: #181818;
+      --panel: rgba(255,255,255,0.06);
+      --panel-strong: rgba(255,255,255,0.1);
+      --text: #f7f2e8;
+      --muted: #b8b0a4;
+      --accent: #d4af37;
+      --accent-soft: #f7e7a9;
+      --accent-2: #6e45e2;
+      --accent-3: #88d3ce;
+      --border: rgba(255,255,255,0.14);
+      --shadow: 0 24px 70px rgba(0,0,0,0.35);
+      --radius: 24px;
+      --max: 1200px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top, rgba(212,175,55,0.16), transparent 30%), var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+      mix-blend-mode: soft-light;
+      opacity: 0.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    img, video { max-width: 100%; display: block; }
+    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+    .section { padding: 90px 0; position: relative; }
+    .eyebrow {
+      font-size: 0.77rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+    .title {
+      font-family: 'Clash Display', 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2rem, 3.8vw, 3rem);
+      line-height: 1.05;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .gradient-text {
+      background: linear-gradient(110deg, var(--accent-soft), var(--accent) 30%, #fff 70%, var(--accent-soft));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .subtext { color: var(--muted); font-size: 1rem; max-width: 700px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 14px 24px; border-radius: 999px; border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03); color: var(--text);
+      transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+      position: relative;
+      overflow: hidden;
+      min-height: 48px;
+    }
+    .btn::before {
+      content: '';
+      position: absolute; inset: -1px; border-radius: inherit;
+      border: 1px solid transparent; background: linear-gradient(120deg, transparent, rgba(212,175,55,0.45), transparent);
+      transform: translateX(-120%); transition: transform 600ms ease;
+    }
+    .btn:hover::before { transform: translateX(120%); }
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(212,175,55,0.5);
+      box-shadow: 0 0 24px rgba(212,175,55,0.2);
+    }
+    .btn-primary { background: linear-gradient(120deg, var(--accent), var(--accent-soft)); color: #111; font-weight: 700; border: 0; }
+    .btn-secondary { background: rgba(255,255,255,0.04); }
+    .glass { background: var(--panel); border: 1px solid var(--border); box-shadow: var(--shadow); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+    nav {
+      position: fixed; inset: 0 0 auto 0; z-index: 20;
+      padding: 22px 0; transition: background 260ms ease, border-color 260ms ease;
+    }
+    nav.scrolled { background: rgba(15,15,15,0.84); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); }
+    .nav-wrap { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Clash Display', sans-serif; font-size: 1.05rem; letter-spacing: 0.2em; text-transform: uppercase; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 24px; color: var(--muted); font-size: 0.9rem; }
+    .nav-links a { transition: color 220ms ease; position: relative; }
+    .nav-links a::after {
+      content: '';
+      position: absolute; left: 0; bottom: -6px; width: 100%; height: 1px;
+      background: linear-gradient(90deg, var(--accent), transparent); transform: scaleX(0); transform-origin: left; transition: transform 220ms ease;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .hero {
+      min-height: 100vh; display: grid; align-items: center; position: relative; overflow: hidden;
+      padding: 110px 0 72px;
+    }
+    .hero video {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(0.8) brightness(0.55);
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.62) 45%, rgba(0,0,0,0.78) 100%);
+    }
+    .hero .container { position: relative; z-index: 1; }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 34px; align-items: end; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.06); backdrop-filter: blur(12px); margin-bottom: 24px; color: #f7e7a9; font-size: 0.86rem; }
+    .hero-badge span { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 14px var(--accent); }
+    .hero h1 { font-family: 'Clash Display', 'Plus Jakarta Sans', sans-serif; font-size: clamp(2.7rem, 6vw, 5.4rem); line-height: 0.95; margin-bottom: 20px; letter-spacing: -0.03em; max-width: 760px; }
+    .hero p { font-size: 1.05rem; color: #d7d0c6; max-width: 650px; margin-bottom: 28px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 34px; }
+    .social-icons { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+    .social-pill {
+      display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border); background: rgba(255,255,255,0.06); color: var(--text); transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+    }
+    .social-pill:hover { transform: translateY(-3px); border-color: rgba(212,175,55,0.45); box-shadow: 0 0 18px rgba(212,175,55,0.2); }
+    .stats { display: grid; gap: 14px; }
+    .stat-card { padding: 18px 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04); backdrop-filter: blur(14px); }
+    .stat-card strong { display: block; font-size: 1.3rem; color: var(--accent-soft); }
+    .stat-card span { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; }
+    .about { display: grid; gap: 36px; align-items: center; grid-template-columns: 0.95fr 1.05fr; }
+    .portrait { position: relative; overflow: hidden; border-radius: 28px; min-height: 560px; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    .portrait::before { content: ''; position: absolute; inset: 0; background: linear-gradient(145deg, rgba(212,175,55,0.16), transparent 45%, rgba(110,69,226,0.16)); z-index: 1; }
+    .portrait img { width: 100%; height: 100%; object-fit: cover; }
+    .portrait-card { position: absolute; left: 20px; right: 20px; bottom: 20px; z-index: 2; padding: 18px 20px; border-radius: 18px; background: rgba(8,8,8,0.76); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(14px); }
+    .info-list { display: grid; gap: 14px; margin-top: 24px; }
+    .info-item { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .info-item:last-child { border-bottom: 0; }
+    .timeline { margin-top: 26px; display: grid; gap: 14px; }
+    .timeline-item { display: grid; grid-template-columns: 90px 1fr; gap: 16px; align-items: start; }
+    .timeline-item .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); margin-top: 8px; box-shadow: 0 0 12px rgba(212,175,55,0.35); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; margin-top: 28px; }
+    .service-card { padding: 24px; border-radius: 24px; min-height: 280px; position: relative; overflow: hidden; transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease; }
+    .service-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(145deg, rgba(212,175,55,0.1), transparent 35%, rgba(110,69,226,0.12)); opacity: 0; transition: opacity 260ms ease; }
+    .service-card:hover::before { opacity: 1; }
+    .service-card:hover { transform: translateY(-6px); border-color: rgba(212,175,55,0.45); box-shadow: 0 18px 50px rgba(0,0,0,0.26); }
+    .service-card h3 { font-size: 1.15rem; margin-bottom: 10px; font-family: 'Clash Display', sans-serif; }
+    .service-card p { color: var(--muted); font-size: 0.95rem; }
+    .service-icon { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; margin-bottom: 18px; background: rgba(212,175,55,0.12); color: var(--accent-soft); border: 1px solid rgba(212,175,55,0.2); }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; margin-top: 28px; }
+    .portfolio-item { position: relative; overflow: hidden; border-radius: 22px; border: 1px solid var(--border); min-height: 220px; background: var(--bg-soft); grid-column: span 4; }
+    .portfolio-item.large { grid-column: span 8; min-height: 320px; }
+    .portfolio-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 450ms ease; }
+    .portfolio-item:hover img { transform: scale(1.06); }
+    .portfolio-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.74)); display: flex; align-items: end; justify-content: space-between; padding: 20px; }
+    .pill { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.16); padding: 7px 10px; border-radius: 999px; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: #f8e9c0; }
+    .testimonials { position: relative; overflow: hidden; }
+    .testimonial-track { display: flex; gap: 18px; width: max-content; animation: scroll 24s linear infinite; }
+    .testimonial-card { width: min(330px, 86vw); padding: 24px; border-radius: 22px; border: 1px solid var(--border); background: rgba(255,255,255,0.05); backdrop-filter: blur(14px); }
+    .stars { color: var(--accent); letter-spacing: 0.2em; margin-bottom: 12px; }
+    .testimonial-card p { color: var(--muted); margin-bottom: 16px; }
+    .client { display: flex; align-items: center; gap: 12px; }
+    .client img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+    .process { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 14px; margin-top: 28px; }
+    .process-step { position: relative; padding: 18px; border-radius: 18px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); }
+    .process-step::before { content: ''; position: absolute; top: 50%; right: -8px; width: 16px; height: 1px; background: linear-gradient(90deg, var(--accent), transparent); }
+    .process-step:last-child::before { display: none; }
+    .process-step strong { display: block; font-family: 'Clash Display', sans-serif; margin-bottom: 8px; color: var(--accent-soft); }
+    .process-step span { color: var(--muted); font-size: 0.9rem; }
+    .launch-kit { display: grid; gap: 18px; margin-top: 28px; }
+    .launch-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
+    .launch-card { padding: 24px; border-radius: 22px; border: 1px solid var(--border); background: rgba(255,255,255,0.05); }
+    .launch-card h3 { font-family: 'Clash Display', sans-serif; margin-bottom: 12px; }
+    .launch-card p, .launch-card li { color: var(--muted); font-size: 0.95rem; }
+    .launch-card ul { margin-top: 12px; display: grid; gap: 10px; padding-left: 18px; }
+    .grid-3x3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; margin-top: 12px; }
+    .grid-3x3 .slot { padding: 12px; border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); min-height: 88px; }
+    .grid-3x3 .slot strong { display: block; margin-bottom: 4px; color: var(--text); font-size: 0.8rem; }
+    .grid-3x3 .slot span { color: var(--muted); font-size: 0.75rem; }
+    .contact-wrap { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 24px; align-items: start; }
+    .contact-card { padding: 24px; border-radius: 24px; border: 1px solid var(--border); background: rgba(255,255,255,0.05); }
+    form { display: grid; gap: 14px; }
+    input, textarea, select { width: 100%; padding: 14px 15px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: var(--text); font: inherit; }
+    input::placeholder, textarea::placeholder { color: #8e887e; }
+    textarea { min-height: 120px; resize: vertical; }
+    footer { padding: 28px 0 36px; border-top: 1px solid rgba(255,255,255,0.08); color: var(--muted); }
+    .footer-wrap { display: flex; justify-content: space-between; gap: 18px; align-items: center; flex-wrap: wrap; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 700ms ease, transform 700ms ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @media (max-width: 960px) {
+      .hero-grid, .about, .contact-wrap { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .portfolio-item, .portfolio-item.large { grid-column: span 12; min-height: 260px; }
+      .process { grid-template-columns: 1fr 1fr; }
+      .launch-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .section { padding: 72px 0; }
+      .nav-links { display: none; }
+      .hero { padding-top: 100px; }
+      .hero h1 { font-size: 2.45rem; }
+      .process { grid-template-columns: 1fr; }
+      .process-step::before { display: none; }
+      .timeline-item { grid-template-columns: 1fr; gap: 6px; }
+      .grid-3x3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav id="nav">
+    <div class="container nav-wrap">
+      <a href="#hero" class="logo">Surya<span>K</span></a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#launch">Launch Kit</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="hero">
+    <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1400&q=80">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+    </video>
+    <div class="container hero-grid">
+      <div>
+        <div class="hero-badge"><span></span> Videographer • Editor • Storyteller</div>
+        <h1>Creating Films That <span class="gradient-text">People Feel,</span> Not Just Watch.</h1>
+        <p>Helping businesses, artists, and couples tell authentic stories through cinematic visuals, premium editing, and emotionally resonant storytelling.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Book A Shoot</a>
+          <a href="#portfolio" class="btn btn-secondary">View Portfolio</a>
+        </div>
+        <div class="social-icons">
+          <a href="#" class="social-pill" aria-label="Instagram">IG</a>
+          <a href="#" class="social-pill" aria-label="YouTube">YT</a>
+          <a href="#" class="social-pill" aria-label="Behance">BE</a>
+          <a href="#" class="social-pill" aria-label="LinkedIn">IN</a>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat-card glass">
+          <strong>100+</strong>
+          <span>Projects</span>
+        </div>
+        <div class="stat-card glass">
+          <strong>5M+</strong>
+          <span>Views</span>
+        </div>
+        <div class="stat-card glass">
+          <strong>50+</strong>
+          <span>Happy Clients</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="about">
+      <div class="container about">
+        <div class="portrait reveal">
+          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80" alt="Portrait of the videographer" />
+          <div class="portrait-card">
+            <div class="eyebrow">Behind The Lens</div>
+            <h3 class="title">Passionate storyteller with a luxury cinematic eye.</h3>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="eyebrow">About</div>
+          <h2 class="title">Crafting cinematic stories with <span class="gradient-text">emotion, precision, and soul.</span></h2>
+          <p class="subtext">I specialize in music videos, wedding films, and premium brand content. Every project is shaped around authenticity, visual rhythm, and emotional impact.</p>
+          <div class="info-list">
+            <div class="info-item"><span>Experience</span><strong>8+ Years</strong></div>
+            <div class="info-item"><span>Creative Process</span><strong>Concept → Shoot → Edit → Deliver</strong></div>
+            <div class="info-item"><span>Equipment</span><strong>Mirrorless, Cinema Lens, Pro Lighting</strong></div>
+            <div class="info-item"><span>Editing Workflow</span><strong>Adobe Premiere, Lightroom, Color Grade</strong></div>
+          </div>
+          <div class="timeline">
+            <div class="timeline-item"><div class="dot"></div><div><strong>Discovery</strong><p class="subtext">We align on vision, audience, and emotional tone.</p></div></div>
+            <div class="timeline-item"><div class="dot"></div><div><strong>Production</strong><p class="subtext">Every frame is planned for cinematic flow and meaning.</p></div></div>
+            <div class="timeline-item"><div class="dot"></div><div><strong>Post</strong><p class="subtext">Color grading, pacing, VFX, and sound shape the final story.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="reveal">
+          <div class="eyebrow">Services</div>
+          <h2 class="title">Premium services designed for <span class="gradient-text">visionary clients.</span></h2>
+          <p class="subtext">From cinematic music videos to luxury wedding films and polished business content, every service is tailored for impact.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card glass reveal">
+            <div class="service-icon">🎵</div>
+            <h3>Music Videos</h3>
+            <p>Creative concepts, cinematic filming, advanced color grading, transitions, motion design, and storytelling that amplifies your sound.</p>
+          </article>
+          <article class="service-card glass reveal">
+            <div class="service-icon">💍</div>
+            <h3>Wedding Films</h3>
+            <p>Luxury wedding cinematography that captures real emotion, meaningful details, and timeless moments with elegance.</p>
+          </article>
+          <article class="service-card glass reveal">
+            <div class="service-icon">🏢</div>
+            <h3>Business Content</h3>
+            <p>Professional visuals for cafes, gyms, restaurants, startups, and personal brands that elevate perception and conversion.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="portfolio">
+      <div class="container">
+        <div class="reveal">
+          <div class="eyebrow">Portfolio</div>
+          <h2 class="title">A curated selection of <span class="gradient-text">cinematic work.</span></h2>
+          <p class="subtext">A visual portfolio built for brands, artists, and couples who want their story delivered with luxury and intention.</p>
+        </div>
+        <div class="portfolio-grid">
+          <div class="portfolio-item large reveal">
+            <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1400&q=80" alt="Music video concept" />
+            <div class="portfolio-overlay"><span class="pill">Music Videos</span><strong>Midnight Refrain</strong></div>
+          </div>
+          <div class="portfolio-item reveal">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80" alt="Wedding film frame" />
+            <div class="portfolio-overlay"><span class="pill">Wedding Films</span><strong>Golden Hour</strong></div>
+          </div>
+          <div class="portfolio-item reveal">
+            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80" alt="Brand commercial" />
+            <div class="portfolio-overlay"><span class="pill">Commercial Ads</span><strong>Studio Motion</strong></div>
+          </div>
+          <div class="portfolio-item reveal">
+            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=900&q=80" alt="Instagram reel content" />
+            <div class="portfolio-overlay"><span class="pill">Instagram Reels</span><strong>Short Form Story</strong></div>
+          </div>
+          <div class="portfolio-item reveal">
+            <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=900&q=80" alt="Brand film" />
+            <div class="portfolio-overlay"><span class="pill">Brand Films</span><strong>Quiet Luxury</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section testimonials">
+      <div class="container">
+        <div class="reveal">
+          <div class="eyebrow">Testimonials</div>
+          <h2 class="title">Trusted by clients who value <span class="gradient-text">elegance and emotion.</span></h2>
+        </div>
+        <div class="testimonial-track" style="margin-top: 28px;">
+          <article class="testimonial-card glass">
+            <div class="stars">★★★★★</div>
+            <p>“Surya brought our music video to life with a level of emotion and polish that felt truly premium.”</p>
+            <div class="client"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="Client" /><div><strong>Mira</strong><br /><span>Artist</span></div></div>
+          </article>
+          <article class="testimonial-card glass">
+            <div class="stars">★★★★★</div>
+            <p>“Every detail felt intentional. The final film looked cinematic and timeless.”</p>
+            <div class="client"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Client" /><div><strong>Daniel</strong><br /><span>Wedding Client</span></div></div>
+          </article>
+          <article class="testimonial-card glass">
+            <div class="stars">★★★★★</div>
+            <p>“The content elevated our entirebrand presence. It felt expensive, refined, and strategic.”</p>
+            <div class="client"><img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=120&q=80" alt="Client" /><div><strong>Nina</strong><br /><span>Founder</span></div></div>
+          </article>
+          <article class="testimonial-card glass">
+            <div class="stars">★★★★★</div>
+            <p>“The edit was so thoughtful and clean that the final reel felt like a film rather than a promo.”</p>
+            <div class="client"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" alt="Client" /><div><strong>Arun</strong><br /><span>Business Client</span></div></div>
+          </article>
+          <article class="testimonial-card glass">
+            <div class="stars">★★★★★</div>
+            <p>“We were deeply moved by the final wedding film. It preserved our day perfectly.”</p>
+            <div class="client"><img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=120&q=80" alt="Client" /><div><strong>Sara</strong><br /><span>Wedding Client</span></div></div>
+          </article>
+          <article class="testimonial-card glass">
+            <div class="stars">★★★★★</div>
+            <p>“The pacing, color, and storytelling felt world-class from start to finish.”</p>
+            <div class="client"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80" alt="Client" /><div><strong>Jules</strong><br /><span>Creative Director</span></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="reveal">
+          <div class="eyebrow">Process</div>
+          <h2 class="title">A refined process from <span class="gradient-text">concept to delivery.</span></h2>
+        </div>
+        <div class="process">
+          <div class="process-step reveal"><strong>01 Discovery</strong><span>We define the story, audience, mood, and outcome.</span></div>
+          <div class="process-step reveal"><strong>02 Planning</strong><span>Shot lists, concepts, and creative direction are mapped out.</span></div>
+          <div class="process-step reveal"><strong>03 Production</strong><span>Filming and direction are shaped around cinematic intent.</span></div>
+          <div class="process-step reveal"><strong>04 Editing</strong><span>We refine pacing, sound design, color, and flow.</span></div>
+          <div class="process-step reveal"><strong>05 Delivery</strong><span>Final files are polished, optimized, and ready to publish.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="launch">
+      <div class="container">
+        <div class="reveal">
+          <div class="eyebrow">Instagram Launch Kit</div>
+          <h2 class="title">A luxury social presence built for <span class="gradient-text">discovery and desire.</span></h2>
+          <p class="subtext">The following kit is designed to support an elevated Instagram launch that speaks to businesses, artists, and couples alike.</p>
+        </div>
+        <div class="launch-grid">
+          <article class="launch-card glass reveal">
+            <h3>Bio</h3>
+            <p>🎬 Videographer & Editor<br/>📍 Theni, Tamil Nadu<br/>🎵 Music Videos | 💍 Weddings | 🏢 Brand Content<br/>✨ Cinematic Storytelling<br/>📩 DM for Bookings & Collaborations</p>
+          </article>
+          <article class="launch-card glass reveal">
+            <h3>9-Post Grid Strategy</h3>
+            <div class="grid-3x3">
+              <div class="slot"><strong>Row 1 • 1</strong><span>Reel • Showreel montage</span></div>
+              <div class="slot"><strong>Row 1 • 2</strong><span>Photo • Professional portrait</span></div>
+              <div class="slot"><strong>Row 1 • 3</strong><span>Reel • Music highlight</span></div>
+              <div class="slot"><strong>Row 2 • 1</strong><span>Reel • Wedding highlight</span></div>
+              <div class="slot"><strong>Row 2 • 2</strong><span>Photo • Editing setup / workspace</span></div>
+              <div class="slot"><strong>Row 2 • 3</strong><span>Reel • Business promo</span></div>
+              <div class="slot"><strong>Row 3 • 1</strong><span>Photo • Behind the scenes</span></div>
+              <div class="slot"><strong>Row 3 • 2</strong><span>Reel • Before / after edit</span></div>
+              <div class="slot"><strong>Row 3 • 3</strong><span>Photo • Client testimonials</span></div>
+            </div>
+          </article>
+          <article class="launch-card glass reveal">
+            <h3>Music Video Caption</h3>
+            <p>Visuals hit harder when they tell a story.<br/><br/>New project dropping soon.<br/>Every frame crafted with intention.<br/>Every transition built for impact.<br/><br/>Ready to create your next music video?<br/>DM “MUSIC” to book.</p>
+          </article>
+          <article class="launch-card glass reveal">
+            <h3>Cold Outreach DM</h3>
+            <p>Hey [Name],<br/><br/>Love what you’re doing with your brand. I’m a videographer and editor creating cinematic content for businesses and creators. I noticed a few opportunities where stronger video content could increase engagement and attract more customers. Would love to create a quick content idea for you. Interested?</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact-wrap">
+        <div class="reveal">
+          <div class="eyebrow">Contact</div>
+          <h2 class="title">Let’s create something <span class="gradient-text">remarkable.</span></h2>
+          <p class="subtext">For music videos, weddings, brand campaigns, and cinematic content that feels luxurious and unforgettable.</p>
+          <div class="info-list">
+            <div class="info-item"><span>Email</span><strong>suryak10052003@gmail.com</strong></div>
+            <div class="info-item"><span>Phone</span><strong>+91 96269 50823</strong></div>
+            <div class="info-item"><span>Location</span><strong>Theni, Tamil Nadu</strong></div>
+          </div>
+        </div>
+        <div class="contact-card glass reveal">
+          <form>
+            <input type="text" placeholder="Name" />
+            <input type="email" placeholder="Email" />
+            <input type="tel" placeholder="Phone" />
+            <select>
+              <option>Project Type</option>
+              <option>Music Video</option>
+              <option>Wedding Film</option>
+              <option>Brand Content</option>
+            </select>
+            <textarea placeholder="Tell me about your project"></textarea>
+            <button class="btn btn-primary" type="button">Let’s Create Something Amazing</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-wrap">
+      <div class="logo">Surya<span>K</span></div>
+      <div>© 2026 Surya K. All rights reserved.</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>

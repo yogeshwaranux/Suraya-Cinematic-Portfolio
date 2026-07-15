@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1700">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#5b21b6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1700" fill="url(#g)"/>
+  <circle cx="900" cy="400" r="260" fill="rgba(255,255,255,0.08)"/>
+  <circle cx="250" cy="1350" r="260" fill="rgba(212,175,55,0.14)"/>
+  <text x="50%" y="42%" text-anchor="middle" font-family="Inter, sans-serif" font-size="120" fill="#f8fafc" font-weight="700">SURAYA</text>
+  <text x="50%" y="54%" text-anchor="middle" font-family="Inter, sans-serif" font-size="42" fill="#e2e8f0">Reel preview</text>
+  <text x="50%" y="62%" text-anchor="middle" font-family="Inter, sans-serif" font-size="26" fill="#c7d2fe">Default thumbnail cover</text>
+</svg>

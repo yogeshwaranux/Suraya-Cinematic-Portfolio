@@ -1,0 +1,16 @@
+/node_modules
+/dist
+/dist 2
+/publish.zip
+/.DS_Store
+**/.DS_Store
+/Build Final
+/.vite
+/cache
+*.log
+*.mp4
+*.mov
+*.zip
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
