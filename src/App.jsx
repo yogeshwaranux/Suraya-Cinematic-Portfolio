@@ -26,70 +26,88 @@ import { faqs } from './data/faqs';
 import { socialLinks } from './data/socialLinks';
 import heroBanner from './assets/hero-banner.png';
 import aboutPortrait from './assets/about-portrait.png';
+import videoOne from './assets/Video-1.mp4';
+import videoTwo from './assets/Video-2.mp4';
+import videoFive from './assets/Video-5.mp4';
+import videoSix from './assets/Video-6.mp4';
+import videoSeven from './assets/Video-7.mp4';
+import videoEight from './assets/Video-8.mp4';
+import videoNine from './assets/Video-9.mp4';
+import videoTen from './assets/Video-10.mp4';
+import videoEleven from './assets/Video-11.mp4';
+
+const previewVideos = [
+  {
+    href: socialLinks.instagram.url,
+    title: 'Content Highlight Preview',
+    label: 'Instagram Reels',
+    platform: 'Instagram',
+    video: videoOne,
+  },
   {
     href: socialLinks.youtube.url,
-    title: 'Music Edit Preview',
+    title: 'Unboxing Edit Preview',
     label: 'YouTube Shorts',
     platform: 'YouTube',
-    remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
-  },
-  {remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
-  },
-  {
-    href: socialLinks.youtube.url,
-    title: 'Music Edit Preview',
-    label: 'YouTube Shorts',
-    platform: 'YouTube',
-    remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+    video: videoTwo,
   },
   {
     href: socialLinks.instagram.url,
-    title: 'Brand Story Preview',
+    title: 'Brand  Preview',
     label: 'Instagram Reels',
     platform: 'Instagram',
-    remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+    video: videoFive,
   },
   {
     href: socialLinks.youtube.url,
-    title: 'Event Highlight Preview',
+    title: 'Real Estate Preview',
     label: 'YouTube',
     platform: 'YouTube',
-    remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+    video: videoEleven,
   },
   {
     href: socialLinks.instagram.url,
-    title: 'Event Cut Preview',
+    title: 'AI Creation Preview',
     label: 'Instagram Reels',
     platform: 'Instagram',
-    remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+    video: videoSix,
   },
   {
     href: socialLinks.youtube.url,
-    title: 'Real Estate Highlight Preview',
+    title: 'Wedding Promo Preview',
     label: 'YouTube',
     platform: 'YouTube',
-    remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+    video: videoEight,
   },
   {
     href: socialLinks.instagram.url,
-    title: 'Wedding Reel Preview',
+    title: 'Love Story Preview',
     label: 'Instagram Reels',
     platform: 'Instagram',
-    remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+    video: videoNine,
   },
   {
     href: socialLinks.youtube.url,
-    title: 'Ai Creative Preview',
+    title: 'Cinematic Cut Preview',
     label: 'YouTube',
     platform: 'YouTube',
-    remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+    video: videoTen,
   },
   {
     href: socialLinks.youtube.url,
-    title: 'Card promotion Edit Preview',
+    title: 'Party Edit Preview',
     label: 'YouTube',
     platform: 'YouTube',
-    remoteVideo: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4'
+    video: videoSeven,
+  },
+];
+
+const showreelVideos = [
+  {
+    id: '_mxAIpa2eA0',
+    url: 'https://youtu.be/_mxAIpa2eA0?si=1HUSua_bZn91A5gP',
+    alt: 'Music edit',
+    platform: 'YouTube',
   },
   {
     id: 'auUcjEVV9qE',
