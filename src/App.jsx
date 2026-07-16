@@ -210,7 +210,7 @@ function PreviewTile({ tile }) {
       className="group w-full overflow-hidden rounded-[24px] border border-white/10 bg-zinc-900/70 transition duration-300 hover:-translate-y-1 hover:border-accent/40"
     >
       <div
-        className="relative overflow-hidden bg-black"
+        className="relative overflow-hidden bg-black h-72"
         onMouseEnter={isVideo ? handleStart : undefined}
         onPointerEnter={isVideo ? handleStart : undefined}
         onTouchStart={isVideo ? handleStart : undefined}
@@ -222,14 +222,13 @@ function PreviewTile({ tile }) {
         {isVideo && !videoError ? (
           <video
             ref={vidRef}
-            className="h-72 w-full object-cover"
+            className="h-full w-full object-cover"
             autoPlay
             muted
             loop
             playsInline
             preload={loadVideo ? 'auto' : 'none'}
             controls={false}
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             onCanPlay={handleCanPlay}
             onError={handleVideoError}
           >
