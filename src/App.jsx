@@ -202,6 +202,49 @@ function PreviewTile({ tile }) {
     setVideoError(true);
   };
 
+  // Diagnostics: log video state and computed styles to debug production invisibility
+  useEffect(() => {
+    const v = vidRef.current;
+    if (!v) return;
+
+    const logState = () => {
+      try {
+        const cs = getComputedStyle(v);
+        console.log('Video Diagnostics:', {
+          title: tile.title,
+          src: v.currentSrc,
+          readyState: v.readyState,
+          videoWidth: v.videoWidth,
+          videoHeight: v.videoHeight,
+          paused: v.paused,
+          display: cs.display,
+          visibility: cs.visibility,
+          opacity: cs.opacity,
+          zIndex: cs.zIndex,
+          objectFit: cs.objectFit,
+          clientWidth: v.clientWidth,
+          clientHeight: v.clientHeight,
+        });
+      } catch (err) {
+        console.warn('Video diagnostics failed', err);
+      }
+    };
+
+    // attach listeners
+    v.addEventListener('loadedmetadata', logState);
+    v.addEventListener('canplay', logState);
+    v.addEventListener('play', logState);
+
+    // initial log (may be before src is set)
+    setTimeout(logState, 250);
+
+    return () => {
+      v.removeEventListener('loadedmetadata', logState);
+      v.removeEventListener('canplay', logState);
+      v.removeEventListener('play', logState);
+    };
+  }, [loadVideo, videoSrc, tile.title]);
+
   return (
     <a
       href={tile.href}
@@ -252,6 +295,8 @@ function PreviewTile({ tile }) {
 }
 
 function App() {
+  console.log('previewVideos', previewVideos);
+
   return (
     <div className="min-h-screen bg-zinc-950 text-stone-100 font-body">
       <header className="relative isolate overflow-hidden">
