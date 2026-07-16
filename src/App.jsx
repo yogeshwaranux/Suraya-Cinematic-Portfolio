@@ -26,15 +26,6 @@ import { faqs } from './data/faqs';
 import { socialLinks } from './data/socialLinks';
 import heroBanner from './assets/hero-banner.png';
 import aboutPortrait from './assets/about-portrait.png';
-import videoOne from './assets/Video-1.mp4';
-import videoTwo from './assets/Video-2.mp4';
-import videoFive from './assets/Video-5.mp4';
-import videoSix from './assets/Video-6.mp4';
-import videoSeven from './assets/Video-7.mp4';
-import videoEight from './assets/Video-8.mp4';
-import videoNine from './assets/Video-9.mp4';
-import videoTen from './assets/Video-10.mp4';
-import videoEleven from './assets/Video-11.mp4';
 
 const previewVideos = [
   {
@@ -42,63 +33,72 @@ const previewVideos = [
     title: 'Content Highlight Preview',
     label: 'Instagram Reels',
     platform: 'Instagram',
-    video: videoOne,
+    localVideo: '/videos/Video-1.mp4',
+    remoteVideo: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
   },
   {
     href: socialLinks.youtube.url,
     title: 'Unboxing Edit Preview',
     label: 'YouTube Shorts',
     platform: 'YouTube',
-    video: videoTwo,
+    localVideo: '/videos/Video-2.mp4',
+    remoteVideo: 'https://media.w3.org/2010/05/bunny/trailer.mp4',
   },
   {
     href: socialLinks.instagram.url,
-    title: 'Brand  Preview',
+    title: 'Brand Preview',
     label: 'Instagram Reels',
     platform: 'Instagram',
-    video: videoFive,
+    localVideo: '/videos/Video-5.mp4',
+    remoteVideo: 'https://media.w3.org/2010/05/video/movie_300.mp4',
   },
   {
     href: socialLinks.youtube.url,
     title: 'Real Estate Preview',
     label: 'YouTube',
     platform: 'YouTube',
-    video: videoEleven,
+    localVideo: '/videos/Video-11.mp4',
+    remoteVideo: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
   },
   {
     href: socialLinks.instagram.url,
     title: 'AI Creation Preview',
     label: 'Instagram Reels',
     platform: 'Instagram',
-    video: videoSix,
+    localVideo: '/videos/Video-6.mp4',
+    remoteVideo: 'https://media.w3.org/2010/05/bunny/trailer.mp4',
   },
   {
     href: socialLinks.youtube.url,
     title: 'Wedding Promo Preview',
     label: 'YouTube',
     platform: 'YouTube',
-    video: videoEight,
+    localVideo: '/videos/Video-8.mp4',
+    remoteVideo: 'https://media.w3.org/2010/05/video/movie_300.mp4',
   },
   {
     href: socialLinks.instagram.url,
     title: 'Love Story Preview',
     label: 'Instagram Reels',
     platform: 'Instagram',
-    video: videoNine,
+    localVideo: '/videos/Video-9.mp4',
+    remoteVideo: 'https://media.w3.org/2010/05/sintel/trailer.mp4',
   },
   {
     href: socialLinks.youtube.url,
     title: 'Cinematic Cut Preview',
     label: 'YouTube',
     platform: 'YouTube',
-    video: videoTen,
+    localVideo: '/videos/Video-10.mp4',
+    remoteVideo: 'https://media.w3.org/2010/05/bunny/trailer.mp4',
   },
   {
     href: socialLinks.youtube.url,
     title: 'Party Edit Preview',
     label: 'YouTube',
     platform: 'YouTube',
-    video: videoSeven,
+    localVideo: '/videos/Video-7.mp4',
+    remoteVideo: 'https://media.w3.org/2010/05/video/movie_300.mp4',
   },
 ];
 
@@ -158,7 +158,7 @@ const whatsappLink = 'https://wa.me/919626950823?text=Hello%20Suraya%2C%20I%20wo
 function PreviewTile({ tile }) {
   const vidRef = useRef(null);
   const [videoError, setVideoError] = useState(false);
-  const videoSrc = tile.video || tile.remoteVideo;
+  const videoSrc = tile.localVideo || tile.remoteVideo;
   const isVideo = Boolean(videoSrc);
 
   const handleStart = async () => {
