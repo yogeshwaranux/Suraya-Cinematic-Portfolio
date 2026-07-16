@@ -222,16 +222,20 @@ function PreviewTile({ tile }) {
         {isVideo && !videoError ? (
           <video
             ref={vidRef}
-            src={loadVideo ? videoSrc : undefined}
             className="h-72 w-full object-cover"
+            autoPlay
             muted
             loop
             playsInline
-            autoPlay
             preload={loadVideo ? 'auto' : 'none'}
+            controls={false}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             onCanPlay={handleCanPlay}
             onError={handleVideoError}
-          />
+          >
+            {loadVideo && <source src={videoSrc} type="video/mp4" />}
+            Your browser does not support the video tag.
+          </video>
         ) : (
           <div className="h-72 w-full bg-zinc-900" />
         )}
