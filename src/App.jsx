@@ -149,10 +149,16 @@ const whatsappLink = 'https://wa.me/919626950823?text=Hello%20Suraya%2C%20I%20wo
 function PreviewTile({ tile }) {
   const vidRef = useRef(null);
   const [videoError, setVideoError] = useState(false);
+  const [loadVideo, setLoadVideo] = useState(false);
   const videoSrc = tile.localVideo || tile.remoteVideo;
   const isVideo = Boolean(videoSrc);
 
+  const ensureVideoLoaded = () => {
+    if (!loadVideo) setLoadVideo(true);
+  };
+
   const handleStart = async () => {
+    ensureVideoLoaded();
     const v = vidRef.current;
     if (!v) return;
     try {
@@ -216,13 +222,13 @@ function PreviewTile({ tile }) {
         {isVideo && !videoError ? (
           <video
             ref={vidRef}
-            src={videoSrc}
+            src={loadVideo ? videoSrc : undefined}
             className="h-72 w-full object-cover"
             muted
             loop
             playsInline
             autoPlay
-            preload="auto"
+            preload={loadVideo ? 'auto' : 'none'}
             onCanPlay={handleCanPlay}
             onError={handleVideoError}
           />
