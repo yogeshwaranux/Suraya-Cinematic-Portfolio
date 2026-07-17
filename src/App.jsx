@@ -149,7 +149,7 @@ const whatsappLink = 'https://wa.me/919626950823?text=Hello%20Suraya%2C%20I%20wo
 function PreviewTile({ tile }) {
   const vidRef = useRef(null);
   const [videoError, setVideoError] = useState(false);
-  const [loadVideo, setLoadVideo] = useState(false);
+  const [loadVideo, setLoadVideo] = useState(true);
   const videoSrc = tile.localVideo || tile.remoteVideo;
   const isVideo = Boolean(videoSrc);
 
@@ -265,17 +265,19 @@ function PreviewTile({ tile }) {
         {isVideo && !videoError ? (
           <video
             ref={vidRef}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover block"
             autoPlay
             muted
             loop
             playsInline
-            preload={loadVideo ? 'auto' : 'none'}
+            preload="auto"
             controls={false}
+            poster=""
             onCanPlay={handleCanPlay}
             onError={handleVideoError}
+            style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', backgroundColor: '#000000' }}
           >
-            {loadVideo && <source src={videoSrc} type="video/mp4" />}
+            <source src={videoSrc} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         ) : (
